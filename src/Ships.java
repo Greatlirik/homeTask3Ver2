@@ -50,8 +50,10 @@ public class Ships extends Thread {
         if (!isApplied) {
             shipsQueue.offer(this);
             synchronized (this) {
+
                 try {
                     this.wait(3000 + new Random().nextInt(3000));
+
 
                 if (!cargoOff) {
                     shipsQueue.remove(this);
@@ -62,12 +64,14 @@ public class Ships extends Thread {
                                 .interrupt();
                         e.printStackTrace();
                     }
+
+
                 }
 
             }
 
         if (!cargoOff) {
-            System.out.println("Корабль " + shipName + " уплыл");
+            System.out.println("Корабль " + shipName + " уплыл восвояси");
         }
 
     }

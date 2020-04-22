@@ -30,17 +30,17 @@ public class Pier extends Thread {
                     } finally{
                     locker.unlock();
                 }
-                //currentShip.conditionShip.await();
+
 
             }
 
             else {
-                synchronized (currentShip) {
+                    currentShip.lockerShip.lock();
                     free = false;
+                    currentShip.lockerShip.unlock();
                     currentShip.Upload();
                     System.out.println("Корабль " + currentShip.getShipName() + " был разгружен причалом " + pierNumber);
                     maxCargoContainers--;
-                }
                 currentShip = shipsQueue.poll();
                 if (currentShip != null) {
                     System.out.println("Корабль " + currentShip.getShipName() + " из очереди пришвартовался к причалу " + pierNumber + " для разгрузки");
